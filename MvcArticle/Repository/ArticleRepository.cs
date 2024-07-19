@@ -4,7 +4,7 @@ namespace MvcArticle.Repository
 {
     public static class ArticleRepository
     {
-        private static List<Article> _students = new List<Article>()
+        private static List<Article> _articles = new List<Article>()
         {
                 new Article()
                 {
@@ -47,6 +47,20 @@ namespace MvcArticle.Repository
                 },
         };
 
-        public static List<Article> Students => _students;
+        public static List<Article> GetArticles()
+        {
+            return _articles;
+        }
+
+        public static void AddArticle(Article article)
+        {
+            article.Id = GenerateId();
+            _articles.Add(article);
+        }
+
+        public static int GenerateId()
+        {
+            return _articles.Max(article => article.Id) + 1;
+        }
     }
 }

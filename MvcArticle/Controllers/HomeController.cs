@@ -16,7 +16,7 @@ namespace MvcArticle.Controllers
 
         public IActionResult Index()
         {
-            List<Article> students = ArticleRepository.Students;
+            List<Article> students = ArticleRepository.GetArticles();
 
             return View(students);
         }
@@ -24,6 +24,13 @@ namespace MvcArticle.Controllers
         public IActionResult Create()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create([Bind("Id,Title,Content")] Article article)
+        {
+            ArticleRepository.AddArticle(article);
+            return RedirectToAction("Index");
         }
 
         public IActionResult Privacy()
