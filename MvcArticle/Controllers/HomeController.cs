@@ -46,9 +46,13 @@ namespace MvcArticle.Controllers
         [HttpPost]
         public IActionResult Create([Bind("Id,Title,Content")] Article article)
         {
-            ArticleRepository.AddArticle(article);
+            if (ModelState.IsValid)
+            {
+                ArticleRepository.AddArticle(article);
+                return RedirectToAction("Index");
+            }
 
-            return RedirectToAction("Index");
+            return View(article);
         }
 
         public IActionResult Edit(int id)
@@ -61,9 +65,13 @@ namespace MvcArticle.Controllers
         [HttpPost]
         public IActionResult Edit([Bind("Id,Title,Content")] Article article)
         {
-            ArticleRepository.UpdateArticle(article);
+            if (ModelState.IsValid)
+            {
+                ArticleRepository.UpdateArticle(article);
+                return RedirectToAction("Index");
+            }
 
-            return RedirectToAction("Index");
+            return View(article);
         }
 
         public IActionResult Delete(int id)
