@@ -1,12 +1,16 @@
 ﻿@model List<MvcArticle.Models.Article>
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home page";
 }
 
 <div class="text-center">
     <h1 class="display-4">CRUD</h1>
 </div>
+
+<p>
+    <a asp-action="Create">Create new article</a>
+</p>
 
 @foreach (var article in Model)
 {

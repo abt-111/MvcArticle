@@ -21,6 +21,11 @@ namespace MvcArticle.Controllers
             return View(students);
         }
 
+        public IActionResult Create()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
