@@ -63,6 +63,21 @@ namespace MvcArticle.Repository
             _articles.Add(article);
         }
 
+        public static void UpdateArticle(Article article)
+        {
+            Article articleToUpdate = GetArticleById(article.Id);
+
+            articleToUpdate.Title = article.Title;
+            articleToUpdate.Content = article.Content;
+        }
+
+        public static void DeleteArticleById(int id)
+        {
+            Article articleToRemove = GetArticleById(id);
+
+            _articles.Remove(articleToRemove);
+        }
+
         public static int GenerateId()
         {
             return _articles.Max(article => article.Id) + 1;

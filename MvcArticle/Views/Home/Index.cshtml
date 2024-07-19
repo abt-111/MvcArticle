@@ -18,6 +18,8 @@
         <h2>Id : @article.Id</h2>
         <h2>@article.Title</h2>
         <p>@article.Content</p>
+        <a asp-action="Edit" asp-route-id="@article.Id">Edit</a>
         <a asp-action="Details" asp-route-id="@article.Id">Details</a>
+        <a asp-action="Delete" asp-route-id="@article.Id">Delete</a>
     </article>
 }

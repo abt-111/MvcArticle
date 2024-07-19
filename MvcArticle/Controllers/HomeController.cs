@@ -37,6 +37,37 @@ namespace MvcArticle.Controllers
         public IActionResult Create([Bind("Id,Title,Content")] Article article)
         {
             ArticleRepository.AddArticle(article);
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Edit(int id)
+        {
+            Article article = ArticleRepository.GetArticleById(id);
+
+            return View(article);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit([Bind("Id,Title,Content")] Article article)
+        {
+            ArticleRepository.UpdateArticle(article);
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Delete(int id)
+        {
+            Article article = ArticleRepository.GetArticleById(id);
+
+            return View(article);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            ArticleRepository.DeleteArticleById(id);
+
             return RedirectToAction("Index");
         }
 
