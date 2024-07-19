@@ -23,7 +23,17 @@ namespace MvcArticle.Controllers
 
         public IActionResult Details(int id)
         {
+            if (id == 0)
+            {
+                return View("ErrorTest", "Invalid article ID.");
+            }
+
             Article article = ArticleRepository.GetArticleById(id);
+
+            if (article == null)
+            {
+                return View("ErrorTest", "Article not found.");
+            }
 
             return View(article);
         }
@@ -49,7 +59,7 @@ namespace MvcArticle.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit([Bind("Id,Title,Content")] Article article)
+        public IActionResult Edit([Bind("Id,Title,Content")] Article article)
         {
             ArticleRepository.UpdateArticle(article);
 

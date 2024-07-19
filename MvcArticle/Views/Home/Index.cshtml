@@ -5,21 +5,28 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">CRUD</h1>
+    <h1 class="display-4">CRUD for model Article</h1>
 </div>
 
 <p>
     <a asp-action="Create">Create new article</a>
 </p>
 
-@foreach (var article in Model)
+@if (Model is not null && Model.Count > 0)
 {
-    <article>
-        <h2>Id : @article.Id</h2>
-        <h2>@article.Title</h2>
-        <p>@article.Content</p>
-        <a asp-action="Edit" asp-route-id="@article.Id">Edit</a>
-        <a asp-action="Details" asp-route-id="@article.Id">Details</a>
-        <a asp-action="Delete" asp-route-id="@article.Id">Delete</a>
-    </article>
+    foreach (var article in Model)
+    {
+        <article>
+            <h2>Id : @article.Id</h2>
+            <h2>@article.Title</h2>
+            <p>@article.Content</p>
+            <a asp-action="Edit" asp-route-id="@article.Id">Edit</a>
+            <a asp-action="Details" asp-route-id="@article.Id">Details</a>
+            <a asp-action="Delete" asp-route-id="@article.Id">Delete</a>
+        </article>
+    }
+}
+else
+{
+    <h2>There are no articles at the moment.</h2>
 }
