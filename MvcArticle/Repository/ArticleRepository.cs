@@ -47,6 +47,11 @@ namespace MvcArticle.Repository
                 },
         };
 
+        public static Article GetArticleById(int id)
+        {
+            return _articles.Find(article => article.Id == id);
+        }
+
         public static List<Article> GetArticles()
         {
             return _articles;

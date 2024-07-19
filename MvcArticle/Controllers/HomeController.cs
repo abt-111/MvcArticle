@@ -21,6 +21,13 @@ namespace MvcArticle.Controllers
             return View(students);
         }
 
+        public IActionResult Details(int id)
+        {
+            Article article = ArticleRepository.GetArticleById(id);
+
+            return View(article);
+        }
+
         public IActionResult Create()
         {
             return View();
