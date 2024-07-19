@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MvcArticle.Models;
+using MvcArticle.Repository;
 using System.Diagnostics;
 
 namespace MvcArticle.Controllers
@@ -15,7 +16,9 @@ namespace MvcArticle.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            List<Article> students = ArticleRepository.Students;
+
+            return View(students);
         }
 
         public IActionResult Privacy()
