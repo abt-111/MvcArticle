@@ -57,7 +57,17 @@ namespace MvcArticle.Controllers
 
         public IActionResult Edit(int id)
         {
+            if (id == 0)
+            {
+                return View("ErrorTest", "Invalid article ID.");
+            }
+
             Article article = ArticleRepository.GetArticleById(id);
+
+            if (article == null)
+            {
+                return View("ErrorTest", "Article not found.");
+            }
 
             return View(article);
         }
@@ -76,7 +86,17 @@ namespace MvcArticle.Controllers
 
         public IActionResult Delete(int id)
         {
+            if (id == 0)
+            {
+                return View("ErrorTest", "Invalid article ID.");
+            }
+
             Article article = ArticleRepository.GetArticleById(id);
+
+            if (article == null)
+            {
+                return View("ErrorTest", "Article not found.");
+            }
 
             return View(article);
         }
